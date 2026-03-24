@@ -1,33 +1,88 @@
 /**
  * Book My Stay Application
- * This class serves as the entry point for the Hotel Booking System.
- * It demonstrates basic Java concepts like main method, console output,
- * and application startup flow.
+ * Use Case 2: Basic Room Types & Static Availability
+ *
+ * Demonstrates abstraction, inheritance, and polymorphism
+ * using different room types in a hotel booking system.
  *
  * @author Sharon
  * @version 1.0
  */
 
+// Abstract class
+abstract class Room {
+    private int beds;
+    private double price;
+    private String type;
+
+    // Constructor
+    public Room(String type, int beds, double price) {
+        this.type = type;
+        this.beds = beds;
+        this.price = price;
+    }
+
+    // Method to display room details
+    public void displayDetails() {
+        System.out.println("Room Type : " + type);
+        System.out.println("Beds      : " + beds);
+        System.out.println("Price     : ₹" + price);
+    }
+}
+
+// Single Room
+class SingleRoom extends Room {
+    public SingleRoom() {
+        super("Single Room", 1, 1500);
+    }
+}
+
+// Double Room
+class DoubleRoom extends Room {
+    public DoubleRoom() {
+        super("Double Room", 2, 2500);
+    }
+}
+
+// Suite Room
+class SuiteRoom extends Room {
+    public SuiteRoom() {
+        super("Suite Room", 3, 5000);
+    }
+}
+
+// Main Application Class
 public class BookMyStayApp {
 
-    /**
-     * Main method - entry point of the application
-     * @param args command line arguments
-     */
     public static void main(String[] args) {
 
-        // Printing welcome message
-        System.out.println("=====================================");
-        System.out.println("     Welcome to Book My Stay App     ");
-        System.out.println("=====================================");
+        System.out.println("===== Book My Stay App =====");
 
-        // Displaying application details
-        System.out.println("Application Name : Hotel Booking System");
-        System.out.println("Version          : 1.0");
+        // Creating room objects (Polymorphism)
+        Room r1 = new SingleRoom();
+        Room r2 = new DoubleRoom();
+        Room r3 = new SuiteRoom();
 
-        // End message
-        System.out.println("-------------------------------------");
-        System.out.println("Application started successfully!");
-        System.out.println("Exiting application...");
+        // Static availability variables
+        int singleAvailable = 5;
+        int doubleAvailable = 3;
+        int suiteAvailable = 2;
+
+        // Display details
+        System.out.println("\n--- Room Details ---\n");
+
+        r1.displayDetails();
+        System.out.println("Available : " + singleAvailable);
+        System.out.println();
+
+        r2.displayDetails();
+        System.out.println("Available : " + doubleAvailable);
+        System.out.println();
+
+        r3.displayDetails();
+        System.out.println("Available : " + suiteAvailable);
+        System.out.println();
+
+        System.out.println("Application Finished.");
     }
 }
